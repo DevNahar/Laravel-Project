@@ -18,9 +18,9 @@
 <div class="content">
 
     <!-- Basic datatable -->
-    <div class="panel panel-flat">
+    <div class="panel panel-flat col-lg-6">
         <div class="panel-heading">
-            <h5 class="panel-title text-semibold">Add User</h5>           
+            <h5 class="panel-title text-semibold">Add Blog Category</h5>           
             <div class="heading-elements">
                 <ul class="icons-list">                    
                     <li><a data-action="collapse"></a></li>
@@ -30,34 +30,34 @@
             </div>
         </div>
 
-        <div class="panel-body"> 
+        <div class="panel-body "> 
                             
-            <form class="form-horizontal" action="{{ route('userStore') }}" method="POST">
+            <form class="form-horizontal" action="{{ route('blogCategories.store') }}" method="POST">
                 @csrf
                 <fieldset class="content-group">
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Name</label>
+                        <label class="control-label col-lg-2">Category Name</label>
                         <div class="col-lg-10">
-                            <input type="text" name="name"  class="form-control">
+                            <input type="text" name="category_name"  class="form-control">
                         </div>
                     </div>
 
+                    
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Email</label>
+                        <label class="control-label col-lg-2">Status</label>
                         <div class="col-lg-10">
-                            <input type="email" name="email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Password</label>
-                        <div class="col-lg-10">
-                            <input type="password" name="password" class="form-control">
+                            <select name="valid" class="form-control">
+                                <option value="">----Select status----</option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                            
                         </div>
                     </div>
                 </fieldset>
 
                 <div class="text-right">
-                    <a href="{{ route('index') }}" class="btn btn-primary"><i class="icon-arrow-right14 position-right"></i>Back to userlist </a>
+                    <a href="{{ route('blogCategories.index') }}" class="btn btn-primary"><i class="icon-arrow-right14 position-right"></i>Back to userlist </a>
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </form>

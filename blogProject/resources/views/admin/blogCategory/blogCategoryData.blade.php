@@ -6,11 +6,11 @@
     <div class="breadcrumb-line">
             <ul class="breadcrumb">
                 <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-                <li><a href="datatable_basic.html">Usertables</a></li>
+                <li><a href="datatable_basic.html">Blog Category</a></li>
                 
             </ul>
 
-        </div>
+   </div>
 </div>
 <!-- Page header -->
 
@@ -20,10 +20,10 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title text-semibold">Users datatable</h5>
+            <h5 class="panel-title text-semibold">Blog Category Table</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li class="btn btn-primary mr-5" ><a href="{{ route('userCreate') }}"> Add User</a></li>
+                    <li class="btn btn-primary mr-5" ><a href="{{ route('blogCategories.create') }}"> Add Category</a></li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
                     <li><a data-action="close"></a></li>
@@ -37,25 +37,30 @@
             <thead>
                 <tr>
                     <th>Srl</th>
-                    <th>Name</th>
-                    <th>Email</th>                    
+                    <th>Category Name</th>                                       
                     <th>Status</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @if (!empty($users))                
-                @foreach ($users as $key=> $user)
+                @if (!empty($blogcategories))                
+                @foreach ($blogcategories as $key=> $category)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    
-                    <td><span class="label label-success">Active</span></td>
+                    <td>{{ $category->category_name }}</td>                  
+                                        
+                    <td>
+                        @if ($category->valid == 1)
+                            <span class="label label-success">Active</span>                            
+                        @else
+                            <span class="label label-success">Inactive</span>  
+                        @endif
+                        
+                    </td>
                     <td class="text-center ">
-                        <a  href="{{ route('userEdit',$user->id) }}"><i class="icon-pencil"></i></a>
+                        <a  href="{{ route('blogCategories.edit',$category->id) }}"><i class="icon-pencil"></i></a>
                         {{-- <a href=""><i class="icon-bin"></i></a> --}}
-                        <form style="display: inline;"  action="{{ route('userDelete',$user->id) }}" method="POST">
+                        <form style="display: inline;"  action="{{ route('blogCategories.destroy',$category->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 

@@ -13,6 +13,7 @@
 <link href="{{ asset('admin/assets/css/minified/core.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('admin/assets/css/minified/components.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('admin/assets/css/minified/colors.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 	<!-- /global stylesheets -->
 
 
@@ -344,6 +345,7 @@
 								
 								<li><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li><a href="{{ url('users') }}"><i class="icon-users2"></i> <span>Users</span></a></li>
+								<li><a href="{{ route('blogCategories.index') }}"><i class="icon-users2"></i> <span>BlogCategory</span></a></li>
 								<li>
 									<a href=""><i class="icon-stack2"></i> <span>Page layouts</span></a>
 									<ul>
@@ -417,7 +419,14 @@
 	
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/pages/datatables_basic.js') }}"></script>
+		<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 		<!-- /theme JS files -->
+		
+		{{-- for Toastr --}}
+        {!! Toastr::message() !!}
+		
+		{{-- for database table error --}}
+		<script>window.alert = function() {};</script>
 
 </body>
 </html>

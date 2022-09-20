@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BlogCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/',[App\Http\Controllers\Admin\MasterController::class,'dashboard']);
-Route::get('/users',[App\Http\Controllers\Admin\UserContoller::class,'userlist'])->name('userlist');
+Route::get('/users',[App\Http\Controllers\Admin\UserContoller::class,'index'])->name('index');
 Route::get('/users/create',[App\Http\Controllers\Admin\UserContoller::class,'create'])->name('userCreate');
 Route::post('/users/store',[App\Http\Controllers\Admin\UserContoller::class,'store'])->name('userStore');
+Route::get('/users/edit/{userid}',[App\Http\Controllers\Admin\UserContoller::class,'edit'])->name('userEdit');
+Route::post('/users/update',[App\Http\Controllers\Admin\UserContoller::class,'update'])->name('userUpdate');
+Route::delete('/users/delete/{id}',[App\Http\Controllers\Admin\UserContoller::class,'userdelete'])->name('userDelete');
+
+//BlogCategory
+
+Route::resource('blogCategories', BlogCategoryController::class);
