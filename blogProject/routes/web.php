@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 
 /*
@@ -27,4 +28,8 @@ Route::delete('/users/delete/{id}',[App\Http\Controllers\Admin\UserContoller::cl
 
 //BlogCategory
 
-Route::resource('blogCategories', BlogCategoryController::class);
+Route::resource('blogCategories', App\Http\Controllers\Admin\BlogCategoryController::class);
+// Route::get('blogCategories/restore',[BlogCategoryContoller::class,'restore'])->name('blogCategories.restore');
+
+//Blog
+Route::resource('blogs', App\Http\Controllers\Admin\BlogController::class);

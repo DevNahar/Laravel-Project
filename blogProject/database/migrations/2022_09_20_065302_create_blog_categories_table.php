@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category_name');
             $table->boolean('valid')->comment('1=active,0=inactive')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

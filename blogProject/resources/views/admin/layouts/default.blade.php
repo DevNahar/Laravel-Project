@@ -345,7 +345,10 @@
 								
 								<li><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li><a href="{{ url('users') }}"><i class="icon-users2"></i> <span>Users</span></a></li>
+								
 								<li><a href="{{ route('blogCategories.index') }}"><i class="icon-users2"></i> <span>BlogCategory</span></a></li>
+								
+								<li><a href="{{ route('blogs.index') }}"><i class="icon-users2"></i> <span>Blog</span></a></li>
 								<li>
 									<a href=""><i class="icon-stack2"></i> <span>Page layouts</span></a>
 									<ul>

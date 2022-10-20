@@ -18,6 +18,7 @@ class BlogCategoryController extends Controller
     public function index()
     {
         $data['blogcategories'] = BlogCategory::all();
+        $data['restore'] = BlogCategory::onlyTrashed()->get();
         return view('admin.BlogCategory.blogCategoryData',$data);
     }
 
@@ -45,12 +46,12 @@ class BlogCategoryController extends Controller
         ]);
 
         if($validator->passes()){
-           $hhh= BlogCategory::create([
+            BlogCategory::create([
                 'category_name'     =>$request->category_name,
                 'valid'    =>$request->valid,
                 
             ]);
-            // dd($hhh);
+            
             Toastr::success('Successfully Inserted', 'User');
         }else{
             $errormsg= $validator->messages();
@@ -93,8 +94,8 @@ class BlogCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {  
-        
-        BlogCategory::where('id',$id)->update([
+        // BlogCategory::where('id',$id)->update([
+        BlogCategory::find($id)->update([        
             'category_name'=> $request->category_name,
             'valid'=> $request->valid,
         ]);
@@ -111,6 +112,22 @@ class BlogCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // BlogCategory::find($id)->delete();
+        //softdelete
+        BlogCategory::find($id)->delete();
+        
+        Toastr::success('Successfully Deleted', 'Blog Category');
+        return redirect()->back();
     }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+//restore
+
 }
+
+
