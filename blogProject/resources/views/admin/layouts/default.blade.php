@@ -47,7 +47,7 @@
 						<span class="visible-xs-inline-block position-right">Git updates</span>
 						<span class="badge bg-warning-400">9</span>
 					</a>
-					
+
 					<div class="dropdown-menu dropdown-content">
 						<div class="dropdown-content-heading">
 							Git updates
@@ -72,7 +72,7 @@
 								<div class="media-left">
 									<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
 								</div>
-								
+
 								<div class="media-body">
 									Add full font overrides for popovers and tooltips
 									<div class="media-annotation">36 minutes ago</div>
@@ -83,7 +83,7 @@
 								<div class="media-left">
 									<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
 								</div>
-								
+
 								<div class="media-body">
 									<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
 									<div class="media-annotation">2 hours ago</div>
@@ -94,7 +94,7 @@
 								<div class="media-left">
 									<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
 								</div>
-								
+
 								<div class="media-body">
 									<a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
 									<div class="media-annotation">Dec 18, 18:36</div>
@@ -105,7 +105,7 @@
 								<div class="media-left">
 									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
 								</div>
-								
+
 								<div class="media-body">
 									Have Carousel ignore keyboard events
 									<div class="media-annotation">Dec 12, 05:46</div>
@@ -126,7 +126,7 @@
 						<i class="icon-people"></i>
 						<span class="visible-xs-inline-block position-right">Users</span>
 					</a>
-					
+
 					<div class="dropdown-menu dropdown-content">
 						<div class="dropdown-content-heading">
 							Users online
@@ -194,7 +194,7 @@
 						<span class="visible-xs-inline-block position-right">Messages</span>
 						<span class="badge bg-warning-400">2</span>
 					</a>
-					
+
 					<div class="dropdown-menu dropdown-content width-350">
 						<div class="dropdown-content-heading">
 							Messages
@@ -267,7 +267,7 @@
 										<span class="text-semibold">Richard Vango</span>
 										<span class="media-annotation pull-right">Mon</span>
 									</a>
-									
+
 									<span class="text-muted">Other travelling salesmen live a life of luxury...</span>
 								</div>
 							</li>
@@ -342,20 +342,20 @@
 							<ul class="navigation navigation-main navigation-accordion">
 
 								<!-- Main -->
-								
-								<li><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<li><a href="{{ url('users') }}"><i class="icon-users2"></i> <span>Users</span></a></li>
-								
-								<li><a href="{{ route('blogCategories.index') }}"><i class="icon-users2"></i> <span>BlogCategory</span></a></li>
-								
-								<li><a href="{{ route('blogs.index') }}"><i class="icon-users2"></i> <span>Blog</span></a></li>
+
+								<li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+								<li class="{{ (request()->is('users')) ? 'active' : '' }}"><a href="{{ url('users') }}"><i class="icon-users2"></i> <span>Users</span></a></li>
+
+								<li class="{{ (request()->is('blogCategories')) ? 'active' : '' }}"><a href="{{ route('blogCategories.index') }}"><i class="icon-users2"></i> <span>BlogCategory</span></a></li>
+
+								<li class="{{ (request()->is('blogs')) ? 'active' : '' }}"><a href="{{ route('blogs.index') }}"><i class="icon-users2"></i> <span>Blog</span></a></li>
 								<li>
 									<a href=""><i class="icon-stack2"></i> <span>Page layouts</span></a>
 									<ul>
 										<li><a href="layout_navbar_fixed.html">Fixed navbar</a></li>
-										
+
 									</ul>
-								
+
 								{{-- Starter kit --}}
 								<li>
 									<a href="#"><i class="icon-stack"></i> <span>Starter kit</span></a>
@@ -364,14 +364,14 @@
 											<li><a href="#">3 columns</a>
 												<ul>
 													<li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
-													
+
 												</ul>
 											</li>
 										<li><a href="starters/4_col.html">4 columns</a></li>
-									
+
 									</ul>
 								</li>
-								{{-- Starter kit --}}								
+								{{-- Starter kit --}}
 
 							</ul>
 						</div>
@@ -392,13 +392,13 @@
 							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Datatables</span> - Basic</h4>
 							<h4><span class="text-semibold">Datatables</span> - Basic</h4>
 						</div>
-						
+
 					</div>
 				</div> --}}
 				<!-- /page header -->
-				
-			@yield('content')	
-				
+
+			@yield('content')
+
 
 			</div>
 			<!-- /main content -->
@@ -409,27 +409,32 @@
 	</div>
 	<!-- /page container -->
 
+
 		<!-- Core JS files -->
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/loaders/pace.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/libraries/jquery.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/libraries/bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/loaders/blockui.min.js') }}"></script>
 		<!-- /core JS files -->
-	
+
 		<!-- Theme JS files -->
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-	
+
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/pages/datatables_basic.js') }}"></script>
-		<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+
 		<!-- /theme JS files -->
-		
+
 		{{-- for Toastr --}}
         {!! Toastr::message() !!}
-		
+
 		{{-- for database table error --}}
-		<script>window.alert = function() {};</script>
+		{{-- <script>window.alert = function() {};</script> --}}
 
 </body>
 </html>

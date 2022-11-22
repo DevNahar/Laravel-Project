@@ -7,7 +7,7 @@
             <ul class="breadcrumb">
                 <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
                 <li><a href="datatable_basic.html">Blog</a></li>
-                
+
             </ul>
 
         </div>
@@ -20,9 +20,9 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat col-lg-6">
         <div class="panel-heading">
-            <h5 class="panel-title text-semibold">Add Blog </h5>           
+            <h5 class="panel-title text-semibold">Add Blog </h5>
             <div class="heading-elements">
-                <ul class="icons-list">                    
+                <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
                     <li><a data-action="close"></a></li>
@@ -30,15 +30,23 @@
             </div>
         </div>
 
-        <div class="panel-body "> 
-                            
+        <div class="panel-body ">
+
             <form class="form-horizontal" action="{{ route('blogs.store') }}" method="POST">
                 @csrf
                 <fieldset class="content-group">
                     <div class="form-group">
-                        <label class="control-label col-lg-2"> Category</label>
+                        <label class="control-label col-lg-2">Category</label>
                         <div class="col-lg-10">
-                            <input type="text" name="category"  class="form-control">
+                            <select name="category_id" class="form-control">
+                                <option value="">----Select Category----</option>
+                                @foreach ($blogcategories as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+
+                                @endforeach
+                                
+                            </select>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +62,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="form-group">
                         <label class="control-label col-lg-2">Status</label>
                         <div class="col-lg-10">
@@ -63,7 +71,7 @@
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>
-                            
+
                         </div>
                     </div>
                 </fieldset>
@@ -74,12 +82,12 @@
                 </div>
             </form>
 
-            
-        </div> 
 
-        
+        </div>
+
+
     </div>
     <!-- /basic datatable -->
 </div>
-<!-- /content area -->	
+<!-- /content area -->
 @endsection

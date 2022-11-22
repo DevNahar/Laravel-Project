@@ -45,13 +45,13 @@ class UserContoller extends Controller
 
     //edit
     public function edit($id){
-        $alldata['blogCategories'] = User::find($id);
-        return view('admin.blogCategories.userEdit',$alldata);
+        $alldata['userinfo'] = User::find($id);
+        return view('admin.user.userEdit',$alldata);
     }
 
     //update
     function update(Request $request){
-     
+
         User::where('id',$request->id)->update([
             'name'=> $request->name,
             'email'=> $request->email,
@@ -60,10 +60,10 @@ class UserContoller extends Controller
         return redirect()->back();
     }
     function userdelete($id){
-     
+
         User::find($id)->delete();
         Toastr::success('Successfully deleted', 'User');
-        return redirect()->route('userlist');
+        return redirect()->route('index');
     }
 }
 

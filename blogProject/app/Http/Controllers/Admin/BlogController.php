@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
 
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -19,6 +20,7 @@ class BlogController extends Controller
     public function index()
     {
         $data['blogs'] = Blog::all();
+
         // $data['restore'] = Blog::onlyTrashed()->get();
         return view('admin.Blog.blogData',$data);
     }
@@ -30,7 +32,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.Blog.blogCreate');
+        $data['blogcategories'] = BlogCategory::all();
+        return view('admin.Blog.blogCreate',$data);
     }
 
     /**
@@ -41,18 +44,23 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator =Validator::make($request->all(),[
-            'category_name' => 'required',
-            'valid'=> 'required',
+            'category_id' => 'required',
+            'title'=> 'required',
         ]);
 
         if($validator->passes()){
             Blog::create([
-                'category_name'     =>$request->category_name,
-                'valid'    =>$request->valid,
-                
+                'category_id' =>$request->category_id,
+                'title'      =>$request->title,
+                'sub_title'  =>$request->sub_title,
+                'description' =>$request->description,
+                'thumbnail'  =>$request->description,
+                'valid'      =>$request->valid,
+
             ]);
-            
+
             Toastr::success('Successfully Inserted', 'User');
         }else{
             $errormsg= $validator->messages();
@@ -94,13 +102,13 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {  
+    {
         // Blog::where('id',$id)->update([
-        Blog::find($id)->update([        
+        Blog::find($id)->update([
             'category_name'=> $request->category_name,
             'valid'=> $request->valid,
         ]);
-       
+
         Toastr::success('Successfully Updated', 'Blog Category');
         return redirect()->back();
     }
@@ -116,7 +124,7 @@ class BlogController extends Controller
         // Blog::find($id)->delete();
         //softdelete
         Blog::find($id)->delete();
-        
+
         Toastr::success('Successfully Deleted', 'Blog ');
         return redirect()->back();
     }
