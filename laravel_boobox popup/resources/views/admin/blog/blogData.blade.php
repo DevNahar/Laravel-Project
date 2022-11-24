@@ -23,7 +23,8 @@
             <h5 class="panel-title text-semibold">Blog  Table</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li class="btn btn-primary mr-5" ><a href="{{ route('blogs.create') }}"> Add Blog</a></li>
+                    <li class="btn btn-primary mr-5" ><a href="{{ route('blogs.create') }}" class="open-popup" selector="blogCreate" > Add Blog</a></li>
+
                     <li class="btn btn-primary mr-5" ><a href="#trashed"><i class="icon-bin"></i> Restore Blog </a></li>
 
                     <li><a data-action="collapse"></a></li>
@@ -170,3 +171,45 @@
 </div>
 <!-- /content area -->
 @endsection
+
+@push('javascript')
+<script>
+    $(document).on("click", ".open-popup", function(e) {
+        e.preventDefault();
+        let selector = $(this).attr('selector')
+       $.ajax({
+            url: "{{ route('blogs.create') }}",
+            type: "GET",
+            datatype: "html",
+            success: function(response){
+                consol.log(response)
+            }
+       });
+
+
+
+  var dialog = bootbox.dialog({
+    title: 'A custom dialog with buttons and callbacks',
+    message: selector,
+    size: 'large',
+    buttons: {
+        cancel: {
+            label: "I'm a cancel button!",
+            className: 'btn-danger',
+            callback: function(){
+                console.log('Custom cancel clicked');
+            }
+        },
+
+        ok: {
+            label: "I'm an OK button!",
+            className: 'btn-info',
+            callback: function(){
+                console.log('Custom OK clicked');
+            }
+        }
+    }
+});
+    });
+</script>
+@endpush

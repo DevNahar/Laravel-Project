@@ -19,7 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $data['blogs'] = Blog::all();
+        $data['blogs'] = Blog::join('blog_categories','blog_categories.id', '=','blogs.category_id')->select('blogs.*','blog_categories.category_name')->get();
 
         // $data['restore'] = Blog::onlyTrashed()->get();
         return view('admin.Blog.blogData',$data);

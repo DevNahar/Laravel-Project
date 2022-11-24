@@ -409,12 +409,20 @@
 	</div>
 	<!-- /page container -->
 
-
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 		<!-- Core JS files -->
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/loaders/pace.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/libraries/jquery.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/libraries/bootstrap.min.js') }}"></script>
+        <!-- bootbox -->
+        <script type="text/javascript" src="{{ asset('admin/assets/bootbox/bootbox.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('admin/assets/bootbox/bootbox.locales.js') }}"></script>
+
+        <!-- bootbox -->
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/loaders/blockui.min.js') }}"></script>
+
 		<!-- /core JS files -->
 
 		<!-- Theme JS files -->
@@ -424,14 +432,15 @@
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/pages/datatables_basic.js') }}"></script>
 
-        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+        <!-- /theme JS files -->
+        {{-- for Toastr --}}
 
 
-		<!-- /theme JS files -->
+        @stack('javascript')
 
-		{{-- for Toastr --}}
-        {!! Toastr::message() !!}
+
+
 
 		{{-- for database table error --}}
 		{{-- <script>window.alert = function() {};</script> --}}
