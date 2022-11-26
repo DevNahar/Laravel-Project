@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+{{-- @extends('admin.layouts.default')
 @section('title', 'Dashboard')
 @section('content')
 <!-- Page header -->
@@ -12,13 +12,13 @@
 
         </div>
 </div>
-<!-- Page header -->
+<!-- Page header --> --}}
 
 <!-- Content area -->
 <div class="content">
 
     <!-- Basic datatable -->
-    <div class="panel panel-flat col-lg-6">
+    {{-- <div class="panel panel-flat col-lg-6">
         <div class="panel-heading">
             <h5 class="panel-title text-semibold">Add Blog </h5>
             <div class="heading-elements">
@@ -28,7 +28,7 @@
                     <li><a data-action="close"></a></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
 
         <div class="panel-body ">
 
@@ -41,10 +41,10 @@
                             <select name="category_id" class="form-control">
                                 <option value="">----Select Category----</option>
                                 @foreach ($blogcategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}" >{{ $category->category_name }}</option>
 
                                 @endforeach
-                                
+
                             </select>
 
                         </div>
@@ -76,10 +76,10 @@
                     </div>
                 </fieldset>
 
-                <div class="text-right">
+                {{-- <div class="text-right">
                     <a href="{{ route('blogs.index') }}" class="btn btn-primary"><i class="icon-arrow-right14 position-right"></i>Back to userlist </a>
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
-                </div>
+                </div> --}}
             </form>
 
 
@@ -88,6 +88,6 @@
 
     </div>
     <!-- /basic datatable -->
-</div>
+{{-- </div> --}}
 <!-- /content area -->
-@endsection
+{{-- @endsection --}}

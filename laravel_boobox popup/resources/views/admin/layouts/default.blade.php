@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title')</title>
 
 	<!-- Global stylesheets -->
@@ -412,6 +413,7 @@
         <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
+
 		<!-- Core JS files -->
 		<script type="text/javascript" src="{{ asset('admin/assets/js/plugins/loaders/pace.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/libraries/jquery.min.js') }}"></script>
@@ -431,6 +433,7 @@
 
 		<script type="text/javascript" src="{{ asset('admin/assets/js/core/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('admin/assets/js/pages/datatables_basic.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('admin/assets/js/custom.js') }}"></script>
 
 
         <!-- /theme JS files -->
@@ -443,7 +446,7 @@
 
 
 		{{-- for database table error --}}
-		{{-- <script>window.alert = function() {};</script> --}}
+		<script>window.alert = function() {};</script>
 
 </body>
 </html>

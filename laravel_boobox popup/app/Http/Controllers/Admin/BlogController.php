@@ -32,7 +32,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $data['blogcategories'] = BlogCategory::all();
+        $data['blogcategories'] = BlogCategory::get();
         return view('admin.Blog.blogCreate',$data);
     }
 
@@ -90,7 +90,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $alldata['category'] = Blog::find($id);
+        $alldata['bloginfo'] = Blog::find($id);
+        $alldata['blogcategories'] = BlogCategory::get();
         return view('admin.Blog.blogEdit',$alldata);
     }
 
@@ -105,8 +106,12 @@ class BlogController extends Controller
     {
         // Blog::where('id',$id)->update([
         Blog::find($id)->update([
-            'category_name'=> $request->category_name,
-            'valid'=> $request->valid,
+            'category_id' =>$request->category_id,
+            'title'      =>$request->title,
+            'sub_title'  =>$request->sub_title,
+            'description' =>$request->description,
+            'thumbnail'  =>$request->description,
+            'valid'      =>$request->valid,
         ]);
 
         Toastr::success('Successfully Updated', 'Blog Category');

@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+{{-- @extends('admin.layouts.default')
 @section('title', 'Dashboard')
 @section('content')
 <!-- Page header -->
@@ -7,7 +7,7 @@
             <ul class="breadcrumb">
                 <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
                 <li><a href="datatable_basic.html">User</a></li>
-                
+
             </ul>
 
         </div>
@@ -20,55 +20,78 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title text-semibold">Category Update </h5>           
+            <h5 class="panel-title text-semibold">Category Update </h5>
             <div class="heading-elements">
-                <ul class="icons-list">                    
+                <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
                     <li><a data-action="close"></a></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="panel-body"> 
-                            
-            <form class="form-horizontal" action="{{ route('blog.update', $category->id) }}" method="POST">
-                
+        <div class="panel-body">
+
+            <form class="form-horizontal" action="{{ route('blogs.update', $bloginfo->id) }}" method="POST">
+
                 @method('PUT')
                 @csrf
                 <fieldset class="content-group">
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Category Name</label>
+                        <label class="control-label col-lg-2">Category</label>
                         <div class="col-lg-10">
-                            <input type="text" name="category_name" value="{{ $category->category_name }}"  class="form-control">
+                            <select name="category_id" class="form-control">
+                                <option value="">----Select Category----</option>
+                                @foreach ($blogcategories as $category)
+                                <option value="{{ $category->id }} " @if ($category->id ==$bloginfo->category_id)selected  @endif>{{ $category->category_name }} </option>
+
+                                @endforeach
+
+
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2"> Title</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="title"  class="form-control" value="{{ $bloginfo->title }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2"> Sub Title</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="sub_title"  class="form-control" value="{{ $bloginfo->sub_title }}">
                         </div>
                     </div>
 
-                    
+
+
                     <div class="form-group">
                         <label class="control-label col-lg-2">Status</label>
                         <div class="col-lg-10">
                             <select name="valid" class="form-control">
-                                <option value="1"@if($category->valid==1) selected @endif>Active</option>
-                                <option value="0" @if($category->valid==0) selected @endif>Inactive</option>
+                                <option value="1"@if($bloginfo->valid==1) selected @endif>Active</option>
+                                <option value="0" @if($bloginfo->valid==0) selected @endif>Inactive</option>
                             </select>
-                            
+
                         </div>
                     </div>
                 </fieldset>
 
-                <div class="text-right">
-                    <a href="{{ route('blog.index') }}" class="btn btn-primary"><i class="icon-arrow-right14 position-right"></i>Back to userlist </a>
+                {{-- <div class="text-right">
+                    <a href="{{ route('blogs.index') }}" class="btn btn-primary"><i class="icon-arrow-right14 position-right"></i>Back to userlist </a>
                     <button type="submit" class="btn btn-primary">Update <i class="icon-arrow-right14 position-right"></i></button>
-                </div>
+                </div> --}}
             </form>
 
-            
-        </div> 
 
-        
+        </div>
+
+{{-- 
     </div>
     <!-- /basic datatable -->
 </div>
-<!-- /content area -->	
-@endsection
+<!-- /content area -->
+@endsection --}}

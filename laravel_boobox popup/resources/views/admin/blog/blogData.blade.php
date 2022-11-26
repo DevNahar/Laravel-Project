@@ -23,7 +23,7 @@
             <h5 class="panel-title text-semibold">Blog  Table</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li class="btn btn-primary mr-5" ><a href="{{ route('blogs.create') }}" class="open-popup" selector="blogCreate" > Add Blog</a></li>
+                    <li class="btn btn-primary mr-5" ><a href="{{ route('blogs.create') }}" class="open-modal" selector="blogCreate"  modal-title="Blog Create" modalType="Create"> Add Blog</a></li>
 
                     <li class="btn btn-primary mr-5" ><a href="#trashed"><i class="icon-bin"></i> Restore Blog </a></li>
 
@@ -35,6 +35,9 @@
         </div>
 
         <div class="panel-body">
+            <div id="abc">
+
+            </div>
 
         <table class="table datatable-basic">
             <thead>
@@ -53,7 +56,7 @@
                 @foreach ($blogs as $key=> $blog)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $blog->category_id }}</td>
+                    <td>{{ $blog->category_name }}</td>
                     <td>{{ $blog->title }}</td>
                     <td>{{ $blog->sub_title }}</td>
 
@@ -66,7 +69,7 @@
 
                     </td>
                     <td class="text-center ">
-                        <a  href="{{ route('blogs.edit',$blog->id) }}"><i class="icon-pencil"></i></a>
+                        <a  href="{{ route('blogs.edit',$blog->id) }}" class="open-modal"  modal-title="Blog Update" selector="blogUpdate" modalType="Update"><i class="icon-pencil" ></i></a>
 
                         <form style="display: inline;"  action="{{ route('blogs.destroy',$blog->id) }}" method="POST">
                             @csrf
@@ -172,44 +175,8 @@
 <!-- /content area -->
 @endsection
 
-@push('javascript')
+{{-- @push('javascript')
 <script>
-    $(document).on("click", ".open-popup", function(e) {
-        e.preventDefault();
-        let selector = $(this).attr('selector')
-       $.ajax({
-            url: "{{ route('blogs.create') }}",
-            type: "GET",
-            datatype: "html",
-            success: function(response){
-                consol.log(response)
-            }
-       });
 
-
-
-  var dialog = bootbox.dialog({
-    title: 'A custom dialog with buttons and callbacks',
-    message: selector,
-    size: 'large',
-    buttons: {
-        cancel: {
-            label: "I'm a cancel button!",
-            className: 'btn-danger',
-            callback: function(){
-                console.log('Custom cancel clicked');
-            }
-        },
-
-        ok: {
-            label: "I'm an OK button!",
-            className: 'btn-info',
-            callback: function(){
-                console.log('Custom OK clicked');
-            }
-        }
-    }
-});
-    });
 </script>
-@endpush
+@endpush --}}
